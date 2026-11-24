@@ -1,0 +1,23 @@
+name: reproducibility
+version: "0.1"
+items:
+  - id: code_available
+    question: Is source code released, with a link?
+  - id: data_available
+    question: Are the datasets named and publicly accessible (or the access procedure described)?
+  - id: hyperparameters
+    question: Are hyperparameters and training settings reported?
+  - id: compute
+    question: Is the compute budget (hardware, runtime) stated?
+  - id: baselines
+    question: Are baselines described and compared under the same conditions?
+  - id: variance
+    question: Are results reported with variance, confidence intervals or multiple seeds?
+  - id: evaluation_metrics
+    question: Are the evaluation metrics clearly defined?
+  - id: limitations
+    question: Does the paper discuss its limitations?
+    required: false
+  - id: ethics
+    question: Are ethical considerations (consent, bias, licensing) addressed where relevant?
+    required: false

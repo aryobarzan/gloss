@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg19-trixie
+    environment:
+      POSTGRES_USER: gloss
+      POSTGRES_PASSWORD: gloss
+      POSTGRES_DB: gloss
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+      - ./scripts/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gloss"]
+      interval: 5s
+      retries: 10
+
+  # Used in 7. to benchmark against pgvector: `docker compose --profile qdrant up -d`
+  qdrant:
+    image: qdrant/qdrant:latest
+    profiles: ["qdrant"]
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrantdata:/qdrant/storage
+
+volumes:
+  pgdata:
+  qdrantdata:
